@@ -1,60 +1,72 @@
 import React from "react";
 import {
-  SafeAreaView,
-  View,
-  Text,
-  FlatList,
   StyleSheet,
+  Text,
+  View,
+  FlatList,
+  SafeAreaView,
+  StatusBar,
 } from "react-native";
+import menu from "./menu.json";
 
-// Local JSON Data
-const menuData = [
-  { id: 1, name: "Paneer Butter Masala", category: "Veg", price: 250, rating: 4.5 },
-  { id: 2, name: "Chicken Biryani", category: "Non-Veg", price: 300, rating: 4.7 },
-  { id: 3, name: "Cold Coffee", category: "Beverage", price: 120, rating: 4.2 },
-  { id: 4, name: "Veg Burger", category: "Veg", price: 150, rating: 4.3 },
-  { id: 5, name: "Mutton Curry", category: "Non-Veg", price: 350, rating: 4.6 },
-];
-
-// Function to get card color based on category
-const getCardColor = (category) => {
-  switch (category) {
-    case "Veg":
-      return "#d4f8d4"; // Light Green
-    case "Non-Veg":
-      return "#f8d4d4"; // Light Red
-    case "Beverage":
-      return "#d4e8f8"; // Light Blue
-    default:
-      return "#ffffff";
-  }
+type MenuItem = {
+  id: number;
+  name: string;
+  category: "Veg" | "Non-Veg" | "Beverage";
+  price: number;
+  rating: number;
 };
 
+const typedMenu: MenuItem[] = menu as MenuItem[];
+
 export default function App() {
-  const renderItem = ({ item }) => (
-    <View style={[styles.card, { backgroundColor: getCardColor(item.category) }]}>
-      <Text style={styles.name}>🍽 {item.name}</Text>
-      <Text style={styles.text}>📂 {item.category}</Text>
-      <Text style={styles.text}>💰 ₹{item.price}</Text>
-      <Text style={styles.text}>⭐ {item.rating}</Text>
+  const getCardColor = (category: MenuItem["category"]) => {
+    switch (category) {
+      case "Veg":
+        return "#d4edda";
+      case "Non-Veg":
+        return "#f8d7da";
+      case "Beverage":
+        return "#d1ecf1";
+      default:
+        return "#ffffff";
+    }
+  };
+
+  const renderItem = ({ item }: { item: MenuItem }) => (
+    <View
+      style={[
+        styles.card,
+        { backgroundColor: getCardColor(item.category) },
+      ]}
+    >
+      <Text style={styles.foodName}>🍽 {item.name}</Text>
+      <Text style={styles.text}>📂 Category: {item.category}</Text>
+      <Text style={styles.text}>💰 Price: ₹{item.price}</Text>
+      <Text style={styles.text}>⭐ Rating: {item.rating}</Text>
     </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={menuData}
+      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+
+      <FlatList<MenuItem>
+        data={typedMenu}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-
-        ListHeaderComponent={<Text style={styles.header}>Restaurant Menu</Text>}
-        ListFooterComponent={<Text style={styles.footer}>Thank You for Visiting</Text>}
-
-        ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
-
-        ListEmptyComponent={<Text style={styles.empty}>No items available</Text>}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <Text style={styles.header}>Restaurant Menu</Text>
+        }
+        ListFooterComponent={
+          <Text style={styles.footer}>Thank You for Visiting</Text>
+        }
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        ListEmptyComponent={
+          <Text style={styles.empty}>No Food Items Available</Text>
+        }
+        contentContainerStyle={styles.listContainer}
       />
     </SafeAreaView>
   );
@@ -63,38 +75,50 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "#ffffff",
+    paddingTop: StatusBar.currentHeight || 20,
   },
+
+  listContainer: {
+    paddingHorizontal: 16,
+    paddingBottom: 20,
+  },
+
   header: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 16,
   },
+
   footer: {
-    fontSize: 16,
-    marginTop: 10,
+    fontSize: 18,
+    marginTop: 16,
     textAlign: "center",
   },
+
   empty: {
-    fontSize: 16,
+    fontSize: 18,
     textAlign: "center",
     marginTop: 20,
   },
+
   card: {
-    width: 200,
-    padding: 15,
+    padding: 16,
     borderRadius: 12,
-    marginVertical: 10,
-    elevation: 3,
   },
-  name: {
-    fontSize: 16,
+
+  foodName: {
+    fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 5,
+    marginBottom: 8,
   },
+
   text: {
-    fontSize: 14,
-    marginBottom: 3,
+    fontSize: 16,
+    marginBottom: 4,
+  },
+
+  separator: {
+    height: 12,
   },
 });
