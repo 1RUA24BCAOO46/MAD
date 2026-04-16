@@ -1,0 +1,18 @@
+[
+  { "id": 1, "name": "Paneer Butter Masala", "category": "Veg", "price": 250, "rating": 4.5 },
+  { "id": 2, "name": "Chicken Biryani", "category": "Non-Veg", "price": 300, "rating": 4.7 },
+  { "id": 3, "name": "Cold Coffee", "category": "Beverage", "price": 120, "rating": 4.2 },
+
+  { "id": 4, "name": "Veg Pulao", "category": "Veg", "price": 200, "rating": 4.3 },
+  { "id": 5, "name": "Butter Naan", "category": "Veg", "price": 40, "rating": 4.1 },
+  { "id": 6, "name": "Mutton Curry", "category": "Non-Veg", "price": 350, "rating": 4.6 },
+  { "id": 7, "name": "Grilled Chicken", "category": "Non-Veg", "price": 280, "rating": 4.4 },
+  { "id": 8, "name": "Masala Dosa", "category": "Veg", "price": 150, "rating": 4.5 },
+  { "id": 9, "name": "Veg Burger", "category": "Veg", "price": 130, "rating": 4.0 },
+  { "id": 10, "name": "Chicken Wings", "category": "Non-Veg", "price": 220, "rating": 4.3 },
+  { "id": 11, "name": "Lemon Soda", "category": "Beverage", "price": 60, "rating": 4.1 },
+  { "id": 12, "name": "Chocolate Milkshake", "category": "Beverage", "price": 140, "rating": 4.6 },
+  { "id": 13, "name": "Veg Fried Rice", "category": "Veg", "price": 180, "rating": 4.2 },
+  { "id": 14, "name": "Fish Fry", "category": "Non-Veg", "price": 320, "rating": 4.5 },
+  { "id": 15, "name": "Iced Tea", "category": "Beverage", "price": 90, "rating": 4.0 }
+]
