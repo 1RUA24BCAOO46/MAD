@@ -1,0 +1,15 @@
+/**
+ * Student Information App
+ * Entry point - renders the AppNavigator
+ *
+ * @format
+ */
+
+import React from 'react';
+import AppNavigator from './src/navigation/AppNavigator';
+
+function App() {
+  return <AppNavigator />;
+}
+
+export default App;
